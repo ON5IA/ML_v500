@@ -27,6 +27,7 @@
 //** Initial version.: 0.00, 2012-10-20  Loftur Jonasson, TF3LJ / VE2LJX
 //**                   (pre-alpha version)
 //**
+//** Ported to Teensy 4.0: 2024-07-01 Frederik, ON5IA
 //**
 //*********************************************************************************
 
