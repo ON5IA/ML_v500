@@ -122,9 +122,8 @@ void adc_poll(void)
   //----------------------------------------------------------------------------
   // If no I2C, then use builtin A/D converters and convert to 12 bit resolution
   {
-    //ON5IA Replace this code 
-    result = adc->analogSyncRead(Pfwd, Pref);  // ref=ADC0, fwd=ADC1
-  
+    //ON5IA Changed analogSynchronizedRerad to analogSyncRead and swapped fwd and ref adc
+    result = adc->analogSyncRead(Pfwd, Pref);  // fwd=ADC0, ref=ADC1
     if( (result.result_adc0 !=ADC_ERROR_VALUE) && (result.result_adc1 !=ADC_ERROR_VALUE) )
     {
       fwd = result.result_adc0;                   // We have good data from the ADs

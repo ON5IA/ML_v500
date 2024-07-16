@@ -59,7 +59,7 @@
 // _EEPROMAnything.h
 //
 
-#include <LiquidCrystal.h>          // ON5IA Changed this from LiquidCrystalFast to LiquidCrystal -> might give issues with the SWR bar
+#include <LiquidCrystal.h>          // ON5IA Changed this from LiquidCrystalFast to LiquidCrystal
 #include <Metro.h>
 #include <EEPROM.h>
 #include <Encoder.h>

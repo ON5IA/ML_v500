@@ -616,7 +616,7 @@ const int LCD_RW           =  3;
 const int LCD_E            =  4;
 // AD inputs for Forward and Reflected Power (SWR measurement)
 const int Pfwd             = A10;
-const int Pref             = A12; // ON5IA -> Teensy 4.0 Pin A12 is ADC01
+const int Pref             = A12; // ON5IA -> Teensy 4.0 Pin A12 is ADC1
 
 
 // Two alternate Stepper Motor configurations

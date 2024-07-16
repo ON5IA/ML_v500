@@ -3309,13 +3309,13 @@ void trx_parameters_set(uint8_t which_trx)
          
   // For ICOM Radios set UART output with Open Drain and Pullup
   //
-  //ON5IA debug mode
-  
+    
   if (controller_settings.trx[which_trx].radio < 2)
   {
     //ON5IA
     //*portConfigRegister(Uart_TXD) |= PORT_PCR_ODE;                     // Open Drain Enable
     //*portConfigRegister(Uart_RXD) |= (PORT_PCR_PE | PORT_PCR_PS);      // Pullup Enable
+    //ON5IA set opendrain=true
     void setTX(uint8_t pin, bool opendrain=true);
   }
   // Set UART function normal for all other Radios - Needed if switching back from ICOM
@@ -3324,10 +3324,10 @@ void trx_parameters_set(uint8_t which_trx)
     //ON5IA
     //*portConfigRegister(Uart_TXD) &= ~PORT_PCR_ODE;                   // Open Drain Disable
     //*portConfigRegister(Uart_RXD) &= ~(PORT_PCR_PE | PORT_PCR_PS);    // Pullup Disable
+    //ON5IA set opendrain=false
     void setTX(uint8_t pin, bool opendrain=false);
   }
   
-  //END ON5IA Debug mode
   // BOOL for TRX serial port - TRUE = Asynchronous serial read mode
   async_uart_read = async[controller_settings.trx[which_trx].radio];
   // Seed metro with the specific settings of the selected Radio

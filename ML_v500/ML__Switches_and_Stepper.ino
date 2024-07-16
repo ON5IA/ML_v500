@@ -76,14 +76,14 @@ uint8_t multipurpose_pushbutton(void)
   #if PSWR_AUTOTUNE
   /*
   //For Teensy 3.2 which has a 12 bit ADC (4096)
-  // uint16_t        push_adval;      // Returned AD value of push button
-  // #define NOTPUSHED  3800          // AD buttons not pushed if EnactSW AD above this value
-  // #define SW1         512          // SW1 (EnactSW) Pushed if EnactSW AD below this value
-  //                                  // Inbetween values for SW5 (Autotune Request) pushed
-  // #define SW4        1816          // SW4: 4096*2k2/(2k2+4k7) = 1304
-  // #define SW5        2417          // SW5: 4096*4k7/4k7 = 2048
-  //                                  // SW6: 4096*10k/(10k+4k7) = 2786,
-  //                                  // is between SW5 and NOTPUSHED
+  uint16_t        push_adval;      // Returned AD value of push button
+  #define NOTPUSHED  3800          // AD buttons not pushed if EnactSW AD above this value
+  #define SW1         512          // SW1 (EnactSW) Pushed if EnactSW AD below this value
+                                   // Inbetween values for SW5 (Autotune Request) pushed
+  #define SW4        1816          // SW4: 4096*2k2/(2k2+4k7) = 1304
+  #define SW5        2417          // SW5: 4096*4k7/4k7 = 2048
+                                   // SW6: 4096*10k/(10k+4k7) = 2786,
+                                   // is between SW5 and NOTPUSHED
   */
   
   //ON5IA
