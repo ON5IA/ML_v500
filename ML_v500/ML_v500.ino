@@ -1319,7 +1319,7 @@ void setup()
   lcd.noCursor();
   lcd.display();
   lcd.home();
-  lcd.createChar(0,0);
+  //lcd.createChar(0,0);                         // Since there are no custom characters in the firmware, this line can be removed without consequences.(HB9HEY)
   
   lcd_bargraph_Init();                           // Initialize LCD Bargraph
 
