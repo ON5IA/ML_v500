@@ -136,12 +136,12 @@
 //-----------------------------------------------------------------------------
 // Bandswitching - Use for switch-in, switch-out of fixed capacitors, feed taps
 // or similar, if needed.  This option is always active, harmless if not used.
-// This provides band switching information in binary form on pins 24 and 25
+// ON5IA: This provides band switching information in binary form on pins 34 and 35
 // (solderpads underneath the Teensy 3.2 Microcontroller)
-// Frequency below BND1_CHANGEOVER will result in :         Pin24 = 0, Pin25 = 0
-// Frequency btw BND1 and BND2 CHANGEOVER will result in :  Pin24 = 1, Pin25 = 0
-// Frequency btw BND2 and BND3 CHANGEOVER will result in :  Pin24 = 0, Pin25 = 1
-// Frequency above BND3_CHANGEOVER will result in:          Pin24 = 1, Pin25 = 1
+// Frequency below BND1_CHANGEOVER will result in :         Pin34 = 0, Pin35 = 0
+// Frequency btw BND1 and BND2 CHANGEOVER will result in :  Pin34 = 1, Pin35 = 0
+// Frequency btw BND2 and BND3 CHANGEOVER will result in :  Pin34 = 0, Pin35 = 1
+// Frequency above BND3_CHANGEOVER will result in:          Pin34 = 1, Pin35 = 1
 // Antenna 1 in two or three antenna mode
 #define ANT1_BND1_CHANGEOVER  5000000     // Example  5 MHz
 #define ANT1_BND2_CHANGEOVER 10000000     // Example 10 MHz
@@ -278,7 +278,7 @@
 #define CALFWD2_RAW_DEFAULT   1586  // Default raw Voltage level2 at  10 dBm
 #define CALREV2_RAW_DEFAULT   1586  // Default raw Voltage level2 at  10 dBm
 #endif                              // End coupler selection
-#define CAL_INP_QUALITY        300  // 400  // Minimum difference between the raw (12 bit) input voltages
+#define CAL_INP_QUALITY        460  // 400  // Minimum difference between the raw (12 bit) input voltages
                                     //   to be allowed to calibrate
 //-----------------------------------------------------------------------------
 // Power & SWR Meter behaviour
@@ -305,7 +305,7 @@
 #define SCALE_B                 12  // e.g. ... 6W 12W 24W 60W 120W 240W ...
 #define SCALE_C                 24  // If all values set as "2", then ... 2W 20W 200W ...
 // Debug - A fake Power and SWR meter can be activated by USB command $fakepswr
-#define FAKEPSWR                 1  // SWR is then generared on basis of Stepper Position
+#define FAKEPSWR                 0  // SWR is then generared on basis of Stepper Position
 
 
 //-----------------------------------------------------------------------------
@@ -351,7 +351,7 @@
 
 // Default Serial Port Rates
 // (valid rates are 0=1200, 1=2400, 2=4800, 3=9600, 4=19200, 5=38400, 6=57600 and 7=115200)
-#define DEFAULT_ICOM_BAUD         3  // Default for ICOM is 9600 b/s
+#define DEFAULT_ICOM_BAUD         4  // Default for ICOM is 9600 b/s
 #define DEFAULT_KENWOOD_BAUD      3  // Default for Kenwood is 9600 b/s
 #define DEFAULT_FT100_BAUD        2  // Default for Yaesu FT-100 is 4800 b/s
 #define DEFAULT_FT7X7_BAUD        2  // Default for Yaesu FT-7x7 is 4800 b/s
@@ -366,7 +366,7 @@
 #define DEFAULT_PSEUDOVFO_BAUD    7  // Not used, but need to have something here
 //
 // Default ICOM CI-V Address IC756proII ... only relevant if ICOM
-#define CIV_TRX_ADDRESS       0x64
+#define CIV_TRX_ADDRESS       0x94
 //
 // Default Serial Port Parameters
 // 0 = TTL polarity, 1 = Reverse polarity Serial (if RS232 without MAX232)
@@ -507,7 +507,7 @@ const char *radiotext[] = { "ICOM generic CI-V",
 // EEPROM settings Serial Number. Increment this number when firmware mods necessitate
 // the clearing of all Frequency/Position memories stored in EEPROM at first boot after
 // an upgrade
-#define COLDSTART_REF      0x13   // When started, the firmware examines this "Serial Number
+#define COLDSTART_REF      0x02   // When started, the firmware examines this "Serial Number
                                   // and enforces factory reset to clear all Controller
                                   // settings, as well as frequency and position memories.
                                   // To roll this value is useful if there is chance of a
@@ -618,6 +618,11 @@ const int LCD_E            =  4;
 const int Pfwd             = A10;
 const int Pref             = A12; // ON5IA -> Teensy 4.0 Pin A12 is ADC1
 
+/* ON5IA: this needs to be cleaned up, found the issue with the antenna bank*/
+const int Pfwd2            = A11; // ON5IA -> How does this Teensy actually work???
+const int Pref2            = A13; // ON5IA -> Teensy 4.0 Pin A12 is ADC1
+
+
 
 // Two alternate Stepper Motor configurations
 // A pair of Allegro A4975, or a Pololu (Texas Instruments) DRV8825 or (Allegro) A4988 
@@ -664,8 +669,8 @@ const int ant2_select =  26;  // Pad underneath the Teensy 3.1/3.2
 #if ANT_CHG_2BANKS && !ANT1_CHANGEOVER && ANALOGOUTPIN // 2 Memory banks, Manual Mode
 const int ChgOvSW     =  27;  // Antenna Changeover, pad underneath the Teensy 3.1/3.2
 #endif
-const int bnd_bit1    =  24;  // Band switching signals, pads underneath the Teensy 3.1/3.2,
-const int bnd_bit2    =  25;  // two binary signal pins for four bands.
+const int bnd_bit1    =  34;  // ON5IA: Band switching signals, pads underneath the Teensy 4.0 (DAT1)
+const int bnd_bit2    =  35;  // ON5IA: two binary signal pins for four bands. (DAT0)
 const int profile_bit1=  31;  // Radio Profile switching  signals, pads underneath the Teensy 3.1/3.2,
 const int profile_bit2=  32;  // two binary signal pins for four profiles.
 const int swralarm_bit=  33;  // SWR alarm output whenever SWR is higher than Menu Preset

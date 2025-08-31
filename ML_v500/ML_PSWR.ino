@@ -93,7 +93,7 @@ int8_t I2C_Init(void)
 void adc_poll(void)
 {
   ADC::Sync_result result;
-
+  
   #if WIRE_ENABLED  
   uint16_t adc_in[4];
   uint8_t  read_B[4];
@@ -122,12 +122,14 @@ void adc_poll(void)
   //----------------------------------------------------------------------------
   // If no I2C, then use builtin A/D converters and convert to 12 bit resolution
   {
-    //ON5IA Changed analogSynchronizedRerad to analogSyncRead and swapped fwd and ref adc
+    //ON5IA Changed analogSynchronizedRead to analogSyncRead and swapped fwd and ref adc
     result = adc->analogSyncRead(Pfwd, Pref);  // fwd=ADC0, ref=ADC1
     if( (result.result_adc0 !=ADC_ERROR_VALUE) && (result.result_adc1 !=ADC_ERROR_VALUE) )
+    
     {
       fwd = result.result_adc0;                   // We have good data from the ADs
       ref = result.result_adc1;
+      
     }
     else  // error
     {
@@ -136,12 +138,12 @@ void adc_poll(void)
       
     }
     //ON5IA	
-    /* Print the values of ADC0 en ADC1
+    //Print the values of ADC0 en ADC1
     Serial.print("A10: ");
     Serial.println(fwd);
     Serial.print("A12: ");
     Serial.println(ref);
-    */
+       
    
   }
 }
@@ -400,7 +402,8 @@ void measure_power_and_swr(void)
   v_fwd = v_fwd * BRIDGE_COUPLING * controller_settings.meter_cal/100.0;
   // Convert into milliwatts
   fwd_power_mw = 1000 * v_fwd*v_fwd/50.0;
-  	
+  
+	
   // Instantaneous reflected voltage and power
   //
   // Establish actual measured voltage at diode

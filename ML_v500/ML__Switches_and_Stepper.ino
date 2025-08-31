@@ -99,7 +99,6 @@ uint8_t multipurpose_pushbutton(void)
   //ON5IA                                 
   
   push_adval = adc->analogRead(EnactSW);
-  
   // Determine state of pushbutton
   if      ((push_adval < NOTPUSHED) && (push_adval > SW5)) state = 6;
   else if ((push_adval < SW5)       && (push_adval > SW4)) state = 5;

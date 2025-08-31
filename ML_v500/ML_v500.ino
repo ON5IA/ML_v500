@@ -729,10 +729,12 @@ void loop()
     #else
     frq = tunedFrq;                   // Frequency informaiton calculated from position of variable capacitor
     #endif
+    
+    
     if (frq >= bnd3_changeover[ant])
     {
       digitalWrite(bnd_bit1,HIGH);    // Bit order can easily be modified by swapping HIGH / LOW
-      digitalWrite(bnd_bit2,HIGH);    // Default pins for bnd_select1 and 2 are 24 and 25 (pads underneath microcontroller)
+      digitalWrite(bnd_bit2,HIGH);    // ON5IA: Default pins for bnd_select1 and 2 are 34 and 35 (pads underneath microcontroller DAT1 & DAT0)
     }
     else if (frq >= bnd2_changeover[ant])
     {
@@ -749,7 +751,7 @@ void loop()
       digitalWrite(bnd_bit1,LOW);
       digitalWrite(bnd_bit2,LOW);
     }
-
+    
     #if DRV8825STEPPER  // ML.h selection: A Pololu (Allegro) A4988 or (TI) 8825 Stepper motor controller carrier board
     //-------------------------------------------------------------------
     // Finalize stepper Move Pulse
@@ -1287,7 +1289,9 @@ void setup()
   //pinMode(Pfwd, INPUT);                          // AD input for Forward Power measurement
   //pinMode(Pref, INPUT);                          // AD input for Reverse Power measurement
   // Set up the two separate ADCs for synchronous read at 12 bit resolution and lowest possible measurement speed (minimal noise)
-  adc->adc0->setSamplingSpeed(ADC_SAMPLING_SPEED::LOW_SPEED);       // Sampling speed, ADC_VERY_LOW_SPEED, ADC_LOW_SPEED, ADC_MED_SPEED, ADC_HIGH_SPEED or ADC_VERY_HIGH_SPEED
+  pinMode(A10, INPUT);                         //ON5IA 
+  pinMode(A12, INPUT);                         //ON5IA 
+    adc->adc0->setSamplingSpeed(ADC_SAMPLING_SPEED::LOW_SPEED);       // Sampling speed, ADC_VERY_LOW_SPEED, ADC_LOW_SPEED, ADC_MED_SPEED, ADC_HIGH_SPEED or ADC_VERY_HIGH_SPEED
   adc->adc1->setSamplingSpeed(ADC_SAMPLING_SPEED::LOW_SPEED);
   adc->adc0->setConversionSpeed(ADC_CONVERSION_SPEED::LOW_SPEED);   // Conversion speed
   adc->adc1->setConversionSpeed(ADC_CONVERSION_SPEED::LOW_SPEED);
@@ -1300,8 +1304,6 @@ void setup()
   adc->adc1->recalibrate();                            //ON5IA
   //adc->adc0->startContinuous(A10);                     //ON5IA
   //adc->adc1->startContinuous(A12);                     //ON5IA 
-  pinMode(A10, INPUT_DISABLE);                         //ON5IA 
-  pinMode(A12, INPUT_DISABLE);                         //ON5IA 
   
   
   
