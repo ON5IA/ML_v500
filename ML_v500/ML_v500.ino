@@ -729,8 +729,7 @@ void loop()
     #else
     frq = tunedFrq;                   // Frequency informaiton calculated from position of variable capacitor
     #endif
-    
-    
+        
     if (frq >= bnd3_changeover[ant])
     {
       digitalWrite(bnd_bit1,HIGH);    // Bit order can easily be modified by swapping HIGH / LOW
@@ -1291,7 +1290,7 @@ void setup()
   // Set up the two separate ADCs for synchronous read at 12 bit resolution and lowest possible measurement speed (minimal noise)
   pinMode(A10, INPUT);                         //ON5IA 
   pinMode(A12, INPUT);                         //ON5IA 
-    adc->adc0->setSamplingSpeed(ADC_SAMPLING_SPEED::LOW_SPEED);       // Sampling speed, ADC_VERY_LOW_SPEED, ADC_LOW_SPEED, ADC_MED_SPEED, ADC_HIGH_SPEED or ADC_VERY_HIGH_SPEED
+  adc->adc0->setSamplingSpeed(ADC_SAMPLING_SPEED::LOW_SPEED);       // Sampling speed, ADC_VERY_LOW_SPEED, ADC_LOW_SPEED, ADC_MED_SPEED, ADC_HIGH_SPEED or ADC_VERY_HIGH_SPEED
   adc->adc1->setSamplingSpeed(ADC_SAMPLING_SPEED::LOW_SPEED);
   adc->adc0->setConversionSpeed(ADC_CONVERSION_SPEED::LOW_SPEED);   // Conversion speed
   adc->adc1->setConversionSpeed(ADC_CONVERSION_SPEED::LOW_SPEED);
@@ -1302,11 +1301,6 @@ void setup()
   delay(100);                                          // good enough for 12 bit resolution w/o too much noise on LSB     
   adc->adc0->recalibrate();                            //ON5IA                   
   adc->adc1->recalibrate();                            //ON5IA
-  //adc->adc0->startContinuous(A10);                     //ON5IA
-  //adc->adc1->startContinuous(A12);                     //ON5IA 
-  
-  
-  
   #endif                                               
   
   //------------------------------------------

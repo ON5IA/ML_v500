@@ -137,17 +137,8 @@ void adc_poll(void)
       ref = -1;
       
     }
-    //ON5IA	
-    //Print the values of ADC0 en ADC1
-    Serial.print("A10: ");
-    Serial.println(fwd);
-    Serial.print("A12: ");
-    Serial.println(ref);
-       
-   
   }
 }
-
 
 //
 //-----------------------------------------------------------------------------------------
@@ -402,8 +393,7 @@ void measure_power_and_swr(void)
   v_fwd = v_fwd * BRIDGE_COUPLING * controller_settings.meter_cal/100.0;
   // Convert into milliwatts
   fwd_power_mw = 1000 * v_fwd*v_fwd/50.0;
-  
-	
+  	
   // Instantaneous reflected voltage and power
   //
   // Establish actual measured voltage at diode
