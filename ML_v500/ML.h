@@ -618,12 +618,6 @@ const int LCD_E            =  4;
 const int Pfwd             = A10;
 const int Pref             = A12; // ON5IA -> Teensy 4.0 Pin A12 is ADC1
 
-/* ON5IA: this needs to be cleaned up, found the issue with the antenna bank*/
-const int Pfwd2            = A11; // ON5IA -> How does this Teensy actually work???
-const int Pref2            = A13; // ON5IA -> Teensy 4.0 Pin A12 is ADC1
-
-
-
 // Two alternate Stepper Motor configurations
 // A pair of Allegro A4975, or a Pololu (Texas Instruments) DRV8825 or (Allegro) A4988 
 #if !DRV8825STEPPER
